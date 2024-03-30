@@ -1,33 +1,31 @@
-/**
- * My To Do List App
- *
- * @format
- */
-
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import ToDoList from "./ToDoList";
 import ToDoForm from "./ToDoForm";
 
 function App() {
-  // Part A: State Management
   const [tasks, setTasks] = useState(["Do laundry", "Go to gym", "Walk dog"]);
+
+  const addTask = (taskText) => {
+    // Check for duplicate tasks
+    if (!tasks.includes(taskText)) {
+      setTasks([...tasks, taskText]);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.ToDoContainer}>
-      {/* Part B: Passing Props */}
       <ToDoList tasks={tasks} />
-      <ToDoForm />
+      <ToDoForm addTask={addTask} />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   ToDoContainer: {
-    top: 350,
-    width: "85%",
+    top: 50,
+    width: "90%",
     alignSelf: "center",
-    margin: "0 auto",
   },
 });
 
